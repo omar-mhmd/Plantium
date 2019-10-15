@@ -6,7 +6,7 @@ import createError from "http-errors"; // better JS errors
 import path from "path";
 
 const app = express(); // create a new app
-
+var bodyParser = require("body-parser");
 const IS_PRODUCTION = app.get("env") === "production";
 
 if (IS_PRODUCTION) {
@@ -18,7 +18,7 @@ app.use(express.json()); // allows POST requests with JSON
 app.use(express.urlencoded({ extended: false })); // allows POST requests with GET-like parameters
 app.use(cookieParser()); // Parses cookies
 app.use(express.static(path.join(__dirname, "../public"))); // <-- location of public dir
-
+app.use(bodyParser.json());
 app.use(
   session({
     // handles sessions

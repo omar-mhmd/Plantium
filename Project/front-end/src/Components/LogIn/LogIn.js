@@ -94,8 +94,8 @@ class LogInForm extends React.Component {
           <p className="signinwith">Don't Have an Account ?</p>
           <br></br>
           <p className="signinwith">Sign Up Now !</p>
-          <Link to="/">
-            <input type="submit" name="SignUp-button" Value="Sign Up" />
+          <Link to="/signup">
+            <button name="SignUp-button" Value="Sign Up">Sign Up</button>
           </Link>
         </div>
         <div className="or">OR</div>

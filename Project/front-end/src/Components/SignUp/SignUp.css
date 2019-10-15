@@ -59,7 +59,7 @@ input[type="password"]
     transition: 0.2s ease;
 }
 
-input[type="submit"]
+button
 {
     margin-bottom: 28px;
     width: 120px;
