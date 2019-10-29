@@ -42,6 +42,7 @@ export const generateJWT = async (req, res, next) => {
           "UPDATE Persons SET Tokens = ? WHERE Persons_id = ?";
         // console.log("weird",update_query);
         await db.run(update_query, [req.token, req.user.Persons_id]);
+        next();
       } else {
         res.status(500).json({ error: "Please contact administrator" });
       }
@@ -66,7 +67,8 @@ export const refreshJWT = async (req, res, next) => {
 
 export const returnJWT = (req, res) => {
   if (req.user && req.token) {
-    res.status(201).json({
+    console.log("returning");
+    res.status(200).json({
       success: true,
       results: {
         token: req.token,

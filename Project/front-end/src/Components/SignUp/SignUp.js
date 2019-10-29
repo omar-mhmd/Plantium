@@ -53,69 +53,71 @@ class SignUpForm extends React.Component {
           error: err
         });
       });
-      console.log(Username, Password);
+    console.log(Username, Password);
   };
 
   render() {
     const { Username, Password, Email } = this.state;
     return (
-      <div id="login-box">
-        <div className="left-box">
-          <h1> Sign Up</h1>
-          <input
-            type="text"
-            name={"Username"}
-            value={Username}
-            placeholder="Username"
-            onChange={this.handleChange}
-          />
-          <input
-            type="text"
-            name={"Email"}
-            value={Email}
-            placeholder="Email"
-            onChange={this.handleChange}
-          />
-          <input
-            type="password"
-            name={"Password"}
-            value={Password}
-            placeholder="Password"
-            onChange={this.handleChange}
-            validate
-          />
-          <input
-            type="password"
-            name={"Password"}
-            value={Password}
-            placeholder="Retype password"
-            onChange={this.handleChange}
-            validate
-          />
-          <button
-            name="signup-button"
-            Value="Sign Up"
-            onClick={e => this.handleSubmit(e)}
-          >
-            Sign Up
-          </button>
-        </div>
-        <div className="right-box">
-          <span className="signinwith">
-            Sign in with
-            <br />
-            Social Network
-          </span>
-          <button className="social facebook">Log in with Facebook</button>
-          <button className="social google">Log in with Google+</button>
-          <p>Have an Account ?</p>
-          <Link to="/Login">
-            <button name="Login-button" Value="Log-in">
-              Log-in
+      <div className="body">
+        <div id="login-box">
+          <div className="left-box">
+            <h1> Sign Up</h1>
+            <input
+              type="text"
+              name={"Username"}
+              value={Username}
+              placeholder="Username"
+              onChange={this.handleChange}
+            />
+            <input
+              type="text"
+              name={"Email"}
+              value={Email}
+              placeholder="Email"
+              onChange={this.handleChange}
+            />
+            <input
+              type="password"
+              name={"Password"}
+              value={Password}
+              placeholder="Password"
+              onChange={this.handleChange}
+              validate
+            />
+            <input
+              type="password"
+              name="Password"
+              placeholder="Retype password"
+            />
+            <form action="/profile" method="post" enctype="multipart/form-data">
+              <input type="file" name="avatar" />
+            </form>
+            <button
+              name="signup-button"
+              Value="Sign Up"
+              onClick={e => this.handleSubmit(e)}
+            >
+              Sign Up
             </button>
-          </Link>
+          </div>
+          <div className="right-box">
+            <span className="signinwith">
+              Sign in with
+              <br />
+              Social Network
+            </span>
+            <button className="social facebook">Log in with Facebook</button>
+            <button className="social google">Log in with Google+</button>
+            <p>Have an Account ?</p>
+            <Link to="/Login">
+              <button name="Login-button" Value="Log-in">
+                Log-in
+              </button>
+            </Link>
+          </div>
+          <div className="or">OR</div>
         </div>
-        <div className="or">OR</div>
       </div>
     );
   }

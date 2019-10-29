@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css?family=Kaushan+Script&display=swap');
+
+.btn-light-green{
+    font-size: 500px;
+}
+
+.text{
+    font-size: 16px;
+    text-align: left;
+    position: relative;
+    top:-7px;
+}
+
+.navbar{
+    height:80px;
+}
+
+.nav-link{
+      pointer-events: auto;
+    
+}
+
+.Image-frame{
+    width:80px;
+    z-index: 1;
+}
+
+.Image-person{
+    position: relative;
+    right: 72px;
+    height: 70px;
+    width:65px;
+    border-radius: 100%;
+     z-index: 3;
+}
+
+.Nav-Text{
+    position: relative;
+    top:-15px;
+    
+    text-align: center;
+    font-size: 14px;
+}
+
+.Nav-Text:hover{
+   color:#5DC618;
+}
+.Nav-Name{
+    text-align: center;
+    
+}
+
+
+.btn-outline-danger {
+    width:130px;
+    position: relative;
+    top:-10px;
+}

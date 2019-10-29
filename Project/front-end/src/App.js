@@ -1,11 +1,13 @@
 import React from "react";
 import "./App.css";
-import { Switch, Route, withRouter } from "react-router-dom";
+import { Switch, Route, withRouter, Redirect } from "react-router-dom";
 
 import SignUpForm from "./Components/SignUp/SignUp.js";
 import LogInForm from "./Components/LogIn/LogIn.js";
-import Home from "./Pages/HomePage/Homepage.js";
-
+import Landing from "./Pages/LandingPage/Landing";
+import Home from "./Pages/HomePage/HomePage.js";
+import Profile from "./Components/Profile/Profile.js"
+// import ContSignUp from "./Components/SignUp/SignUp2.js"
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -67,18 +69,30 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <>
         <Switch>
+          <Route exact path="/">
+            {this.state.auth.loggedIn ? (
+              <Redirect to="/HomePage" />
+            ) : (
+              <Redirect to="/signup" />
+            )}
+          </Route>
           <Route
             path={"/"}
             exact
             render={props => (
-              <Home
+              <Landing
                 {...props}
                 logUserIn={this.logUserIn}
                 loggedIn={this.state.auth.loggedIn}
               />
             )}
+          />
+          <Route
+            path={"/HomePage"}
+            exact
+            render={props => <Home {...props.logUserIn} />}
           />
 
           <Route
@@ -88,12 +102,18 @@ class App extends React.Component {
           />
 
           <Route
+            path={"/Profile"}
+            exact
+            render={props => <Profile {...props} />}
+          />
+
+          <Route
             path={"/login"}
             exact
             render={props => <LogInForm {...props} />}
           />
         </Switch>
-      </div>
+      </>
     );
   }
 }
