@@ -17,7 +17,7 @@ app.use(cors()); // allows cross domain requests
 app.use(express.json()); // allows POST requests with JSON
 app.use(express.urlencoded({ extended: false })); // allows POST requests with GET-like parameters
 app.use(cookieParser()); // Parses cookies
-
+app.use(express.static(path.join(__dirname, "../Public")));
 app.use(bodyParser.json());
 app.use(
   session({

@@ -17,6 +17,7 @@
 
 .nav-link{
       pointer-events: auto;
+      background-color: none;
     
 }
 
@@ -37,10 +38,11 @@
 .Nav-Text{
     position: relative;
     top:-15px;
-    
+    background-color: none;
     text-align: center;
     font-size: 14px;
 }
+
 
 .Nav-Text:hover{
    color:#5DC618;
@@ -56,3 +58,4 @@
     position: relative;
     top:-10px;
 }
+

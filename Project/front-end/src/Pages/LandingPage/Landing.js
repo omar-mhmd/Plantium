@@ -4,7 +4,7 @@ import Home from "../HomePage/HomePage.js"
 
 
 
-import { Switch, Route } from "react-router-dom";
+
 
 class Landing extends Component {
   constructor(props) {
@@ -19,24 +19,10 @@ class Landing extends Component {
     
     if (this.props.loggedIn) {
       return (
-        <Switch>
-          <Route
-            path={"/HomePage"}
-            exact
-            render={props => <Home {...props} />}
-          />
-        </Switch>
+         this.props.history.push("/HomePage")
       );
     } else {
-      return (
-        <Switch>
-          <Route
-            path={"/signup"}
-            exact
-            render={props => <SignUpForm {...props} />}
-          />
-        </Switch>
-      );
+      return this.props.history.push("/signup");
     }
   }
 }

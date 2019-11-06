@@ -90,9 +90,11 @@ class SignUpForm extends React.Component {
               name="Password"
               placeholder="Retype password"
             />
+            
             <form action="/profile" method="post" enctype="multipart/form-data">
               <input type="file" name="avatar" />
             </form>
+            <br/>
             <button
               name="signup-button"
               Value="Sign Up"

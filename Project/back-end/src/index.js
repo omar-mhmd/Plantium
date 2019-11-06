@@ -197,7 +197,7 @@ const start = async () => {
     const { id } = req.params;
     const sql = `SELECT * FROM Posts WHERE Posts_id=${id}`;
     try {
-      const Posts = await db.get(sql);
+      const Posts = await db.all(sql);
       console.log("Posts ", Posts);
       console.log("id ", id);
       res.json({
@@ -208,7 +208,7 @@ const start = async () => {
       console.log(e);
       res.status(404).json({
         success: false,
-        message: `No person available with ID: ${id}`
+        message: `No post available with ID: ${id}`
       });
     }
   });

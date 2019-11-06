@@ -6,8 +6,10 @@ import SignUpForm from "./Components/SignUp/SignUp.js";
 import LogInForm from "./Components/LogIn/LogIn.js";
 import Landing from "./Pages/LandingPage/Landing";
 import Home from "./Pages/HomePage/HomePage.js";
-import Profile from "./Components/Profile/Profile.js"
-// import ContSignUp from "./Components/SignUp/SignUp2.js"
+import Profile from "./Components/Profile/Profile.js";
+import Course from "./Pages/Courses/Courses.js";
+import Events from "./Pages/EventPage/Events.js";
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -83,34 +85,50 @@ class App extends React.Component {
             exact
             render={props => (
               <Landing
-                {...props}
                 logUserIn={this.logUserIn}
                 loggedIn={this.state.auth.loggedIn}
+                {...props}
               />
             )}
           />
           <Route
             path={"/HomePage"}
             exact
-            render={props => <Home {...props.logUserIn} />}
+            render={props => <Home user={this.state.auth} {...props} />}
           />
 
           <Route
             path={"/signup"}
             exact
-            render={props => <SignUpForm {...props} />}
+            render={props => (
+              <SignUpForm logUserIn={this.logUserIn} {...props} />
+            )}
           />
 
           <Route
             path={"/Profile"}
             exact
-            render={props => <Profile {...props} />}
+            render={props => <Profile user={this.state.auth} {...props} />}
+          />
+
+          <Route
+            path={"/Courses"}
+            exact
+            render={props => <Course user={this.state.auth} {...props} />}
+          />
+
+          <Route
+            path={"/Events"}
+            exact
+            render={props => <Events user={this.state.auth} {...props} />}
           />
 
           <Route
             path={"/login"}
             exact
-            render={props => <LogInForm {...props} />}
+            render={props => (
+              <LogInForm logUserIn={this.logUserIn} {...props} />
+            )}
           />
         </Switch>
       </>

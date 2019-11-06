@@ -44,8 +44,10 @@ class LogInForm extends React.Component {
       console.log(data);
       const { success, message, results } = data;
       const { token, user } = results;
+      this.props.logUserIn(user);
       if (success) {
         localStorage.setItem("jwt", token);
+        // this.props.user;
         console.log(token, "token");
         // this.props.logUserIn(user);
         this.props.history.push("/");

@@ -1,11 +1,38 @@
 import React, { Component } from "react";
 import "./Profile.css";
 
+import {
+  MDBBtn,
+  MDBContainer,
+  MDBModal,
+  MDBModalBody,
+  MDBModalHeader,
+  MDBModalFooter
+} from "mdbreact";
+
+import { Link } from "react-router-dom";
+
 class Profile extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      modal: false
+      // Persons: {},
+      // Posts: []
+      // Profile:[]
+    };
   }
+
+  toggle = () => {
+    this.setState({
+      modal: !this.state.modal
+    });
+  };
+
+  componentDidMount() {
+    console.log(this.props.user.user);
+  }
+
   render() {
     return (
       <div className="body1">
@@ -18,33 +45,35 @@ class Profile extends Component {
           >
             <br />
             <div className="w3-container">
-              <a
-                href="#"
+              <Link
+                to="#"
                 onclick="w3_close()"
-                className="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey"
+                className="w3-hide-large w3-right
+                w3-jumbo w3-padding w3-hover-grey"
                 title="close menu"
               >
                 {/* <i className="fa fa-remove" /> */}
-              </a>
+              </Link>
               <img
-                src={require("../../Assets/person2.jpg")}
+                src={`http://localhost:3030/Profile_Images/${this.props.user.user.Image}`}
                 style={{ width: "45%" }}
                 className="w3-round"
               />
               <br />
               <br />
               <h4>
-                <b>PORTFOLIO</b>
+                <b>{this.props.user.user.Name}</b>
               </h4>
             </div>
+            <hr></hr>
             <div className="w3-bar-block">
               <a
                 href="#portfolio"
                 onclick="w3_close()"
                 className="w3-bar-item w3-button w3-padding w3-text-teal"
               >
-                {/* <i className="fa fa-th-large fa-fw w3-margin-right" /> */}
-                PORTFOLIO
+                <i className="fa fa-th-large fa-fw w3-margin-right" />
+                My Blogs
               </a>
               <a
                 href="#about"
@@ -52,16 +81,68 @@ class Profile extends Component {
                 className="w3-bar-item w3-button w3-padding"
               >
                 <i className="fa fa-user fa-fw w3-margin-right" />
-                ABOUT
+                Biography
               </a>
+
               <a
-                href="#contact"
+                href="/HomePage"
                 onclick="w3_close()"
                 className="w3-bar-item w3-button w3-padding"
               >
-                {/* <i className="fa fa-envelope fa-fw w3-margin-right" /> */}
-                CONTACT
+                <i className="fas fa-leaf w3-margin-right" />
+                Homepage
               </a>
+              <div></div>
+              <hr></hr>
+              <MDBContainer>
+                <MDBBtn className="edit" color="light" onClick={this.toggle}>
+                  <i class="far fa-edit"></i>
+                  <b>Edit Profile</b>
+                </MDBBtn>
+                <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
+                  <MDBModalHeader toggle={this.toggle}>
+                    Edit Your Profile
+                  </MDBModalHeader>
+                  <MDBModalBody>
+                    <h6>
+                      <b>Choose an Image</b>
+                    </h6>
+                    <form
+                      action="/profile"
+                      method="post"
+                      enctype="multipart/form-data"
+                    >
+                      <input type="file" name="avatar" />
+                    </form>
+                    <br />
+                    <h6>
+                      <b>Edit your personal information</b>
+                    </h6>
+                    <br />
+                    <div className="input-profile">
+                      <input
+                        type="text"
+                        name="Name"
+                        // value={Email}
+                        placeholder="Name"
+                        // onChange={this.handleChange}
+                      />
+                      <input
+                        className="bio-profile"
+                        type="text"
+                        name="About Me"
+                        placeholder="Type your Biography here...."
+                      />
+                    </div>
+                  </MDBModalBody>
+                  <MDBModalFooter>
+                    <MDBBtn color="secondary" onClick={this.toggle}>
+                      Close
+                    </MDBBtn>
+                    <MDBBtn color="primary">Save changes</MDBBtn>
+                  </MDBModalFooter>
+                </MDBModal>
+              </MDBContainer>
             </div>
             <div className="w3-panel w3-large"></div>
           </nav>
@@ -236,22 +317,7 @@ class Profile extends Component {
                 </div>
               </div>
               {/* Images of Me */}
-              <div className="w3-row-padding w3-padding-16" id="about">
-                <div className="w3-col m6">
-                  <img
-                    src={require("../../Assets/front1.jpg")}
-                    alt="Me"
-                    style={{ width: "100%" }}
-                  />
-                </div>
-                <div className="w3-col m6">
-                  <img
-                    src={require("../../Assets/front1.jpg")}
-                    alt="Me"
-                    style={{ width: "100%" }}
-                  />
-                </div>
-              </div>
+              <div className="w3-row-padding w3-padding-16" id="about"></div>
               <div
                 className="w3-container w3-padding-large"
                 style={{ marginBottom: 32 }}
@@ -259,16 +325,7 @@ class Profile extends Component {
                 <h4>
                   <b>About Me</b>
                 </h4>
-                <p>
-                  Just me, myself and I, exploring the universe of unknownment.
-                  I have a heart of love and an interest of lorem ipsum and
-                  mauris neque quam blog. I want to share my world with you.
-                  Praesent tincidunt sed tellus ut rutrum. Sed vitae justo
-                  condimentum, porta lectus vitae, ultricies congue gravida diam
-                  non fringilla. Praesent tincidunt sed tellus ut rutrum. Sed
-                  vitae justo condimentum, porta lectus vitae, ultricies congue
-                  gravida diam non fringilla.
-                </p>
+                <p>{this.props.user.user.Bio}</p>
               </div>
             </div>
           </div>

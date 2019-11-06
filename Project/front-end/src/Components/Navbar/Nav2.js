@@ -1,8 +1,4 @@
 import React from "react";
-import "./Nav.css";
-
-import SocialPage from "../Social Media/Social.js";
-
 import {
   MDBNavbar,
   MDBNavbarBrand,
@@ -21,13 +17,15 @@ import {
   MDBBtn
 } from "mdbreact";
 import { Link } from "react-router-dom";
+ import "./Nav.css";
 
-class Nav extends React.Component {
+class Nav2 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       collapse: false,
-      isWideEnough: false
+      isWideEnough: false,
+      Persons: []
     };
     this.onClick = this.onClick.bind(this);
   }
@@ -113,27 +111,10 @@ class Nav extends React.Component {
               </MDBNavbarNav>
             </MDBCollapse>
           </MDBNavbar>
-
-          <MDBView src={require("../../Assets/front1.jpg")}>
-            <MDBMask
-              overlay="green-light"
-              className="flex-center flex-column text-white text-center"
-            >
-              <h1>Plantium</h1>
-              <br />
-              <h2>Plant Freedom</h2>
-            </MDBMask>
-          </MDBView>
         </header>
-
-        <main>
-          <MDBContainer className="text-center my-5">
-            <SocialPage />
-          </MDBContainer>
-        </main>
       </div>
     );
   }
 }
 
-export default Nav;
+export default Nav2;
