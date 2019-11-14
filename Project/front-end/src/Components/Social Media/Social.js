@@ -1,17 +1,61 @@
 import React, { Component } from "react";
 import "./Social.css";
+import Popup from "reactjs-popup";
+
 
 import Editor from "../Blog Editor/Editor.js";
 
 class SocialPage extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      Image: null
+    };
   }
+
+  handleImageChange = event => {
+    this.setState({
+      Image: event.target.files[0]
+    });
+  };
+
+  handleSubmit = event => {
+    event.preventDefault();
+    const body = new FormData();
+    const { Image } = this.state;
+    body.append("Image_names", Image);
+    // body.append("Tokens", this.props.user.user.Tokens);
+    body.append("Persons_id", this.props.user.user.Persons_id);
+    console.log(Image);
+    fetch("http://localhost:3030/Posts_Images", {
+      method: "post",
+
+      body
+    })
+      .then(response => response.json())
+      .then(data => {
+        const { success, message } = data;
+        console.log(message);
+        if (success) {
+          alert("You have successfully uploaded an Image")
+        } else {
+          this.setState({
+            error: message
+          });
+        }
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({
+          error: err
+        });
+      });
+  };
+
   render() {
+    const {Image}=this.state;
     return (
       <div>
-       
         {/* Page Container */}
         <div
           className="w3-container w3-content"
@@ -24,33 +68,63 @@ class SocialPage extends Component {
               {/* Accordion */}
               <div className="w3-card w3-round">
                 <div className="w3-white">
-                  <button
-                    onclick="myFunction('Demo1')"
-                    className="w3-button w3-block w3-theme-l1 w3-left-align"
+                  <Popup
+                    trigger={
+                      <button className="w3-button w3-block w3-theme-l1 w3-left-align">
+                        <i class="fas fa-pencil-alt fa-fw w3-margin-right"></i>
+                        Post a Blog
+                      </button>
+                    }
+                    modal
+                    position="right center"
                   >
-                    <i class="fas fa-pencil-alt fa-fw w3-margin-right"></i>
-                    Post a Blog
-                  </button>
-                  <div id="Demo1" className="w3-hide w3-container">
-                    <p>Some text..</p>
-                  </div>
-                  <button
-                    onclick="myFunction('Demo2')"
-                    className="w3-button w3-block w3-theme-l1 w3-left-align"
+                    <div>
+                      <Editor />
+                    </div>
+                  </Popup>
+
+                  <Popup
+                    trigger={
+                      <button
+                        onclick="myFunction('Demo2')"
+                        className="w3-button w3-block w3-theme-l1 w3-left-align"
+                      >
+                        <i class="fas fa-camera fa-fw w3-margin-right"></i>
+                        Post an Image
+                      </button>
+                    }
+                    modal
+                    position="right center"
                   >
-                    <i class="fas fa-camera fa-fw w3-margin-right"></i>
-                    Post an Image
-                  </button>
-                  <div id="Demo2" className="w3-hide w3-container">
-                    <p>Some other text..</p>
-                  </div>
-                  <button
-                    onclick="myFunction('Demo3')"
-                    className="w3-button w3-block w3-theme-l1 w3-left-align"
+                    <div>
+                      <input
+                        type="file"
+                        name="Image"
+                        onChange={this.handleImageChange}
+                      />
+                      <br />
+                      <button onClick={e => this.handleSubmit(e)}>
+                        Submit
+                      </button>
+                    </div>
+                  </Popup>
+
+                  <Popup
+                    trigger={
+                      <button
+                        onclick="myFunction('Demo3')"
+                        className="w3-button w3-block w3-theme-l1 w3-left-align"
+                      >
+                        <i class="fas fa-paperclip fa-fw w3-margin-right"></i>
+                        Post a Link
+                      </button>
+                    }
+                    modal
+                    position="right center"
                   >
-                    <i class="fas fa-paperclip fa-fw w3-margin-right"></i> 
-                    Post a Link
-                  </button>
+                    <div></div>
+                  </Popup>
+
                   <div id="Demo3" className="w3-hide w3-container">
                     <div className="w3-row-padding">
                       <br />

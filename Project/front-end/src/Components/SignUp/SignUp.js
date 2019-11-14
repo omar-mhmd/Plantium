@@ -9,6 +9,7 @@ class SignUpForm extends React.Component {
       Username: "",
       Password: "",
       Email: "",
+      Image: null,
       error: ""
     };
   }
@@ -19,22 +20,27 @@ class SignUpForm extends React.Component {
     });
   };
 
+  handleImageChange = event => {
+    this.setState({
+      Image: event.target.files[0]
+    });
+  };
+
   handleSubmit = event => {
     event.preventDefault();
     console.log("here", event);
-    const { Username, Password, Email } = this.state;
+    const body = new FormData();
+    const { Username, Password, Email, Image } = this.state;
+    body.append("Username", Username);
+    body.append("Email", Email);
+    body.append("Password", Password);
+    body.append("event", "Profile_Images");
+    body.append("Image", Image);
+    console.log(Image);
     fetch("http://localhost:3030/signup", {
       method: "post",
-      headers: {
-        "Content-type": "application/json",
-        Accept: "application/json"
-      },
 
-      body: JSON.stringify({
-        Username,
-        Password,
-        Email
-      })
+      body
     })
       .then(response => response.json())
       .then(data => {
@@ -57,7 +63,7 @@ class SignUpForm extends React.Component {
   };
 
   render() {
-    const { Username, Password, Email } = this.state;
+    const { Username, Password, Email, Image } = this.state;
     return (
       <div className="body">
         <div id="login-box">
@@ -90,11 +96,11 @@ class SignUpForm extends React.Component {
               name="Password"
               placeholder="Retype password"
             />
-            
-            <form action="/profile" method="post" enctype="multipart/form-data">
-              <input type="file" name="avatar" />
-            </form>
-            <br/>
+
+            {/* <form action="/profile" method="post" enctype="multipart/form-data"> */}
+            <input type="file" name="Image" onChange={this.handleImageChange} />
+            {/* </form> */}
+            <br />
             <button
               name="signup-button"
               Value="Sign Up"

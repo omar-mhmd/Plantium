@@ -82,22 +82,23 @@ export const returnJWT = (req, res) => {
 };
 
 export const withAuth = async (req, res, next) => {
-  const token =
-    req.body.token ||
-    req.query.token ||
+  const Tokens =
+    req.body.Tokens ||
+    req.query.Tokens ||
     req.headers["x-access-token"] ||
-    req.cookies.token;
+    req.cookies.Tokens;
   const db = await sqlite.open("./Plantium.sqlite");
 
-  if (!token) {
+  if (!Tokens) {
     res.status(401).send("Unauthorized: No token provided");
   } else {
-    jwt.verify(token, jwtSecret, function(err, decoded) {
+    jwt.verify(Tokens, jwtSecret, async function(err, decoded) {
       if (err) {
         res.status(401).send("Unauthorized: Invalid token");
       } else {
         const query = "SELECT * FROM Persons WHERE Persons_id=?";
-        req.user = db.get(query, [decoded.id]);
+        req.user = await db.get(query, [decoded.id]);
+        console.log(req.user);
         next();
       }
     });

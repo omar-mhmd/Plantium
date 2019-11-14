@@ -16,12 +16,63 @@ class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      modal: false
-      // Persons: {},
-      // Posts: []
-      // Profile:[]
+      modal: false,
+      Name: "",
+      Email: "",
+      Bio: "",
+      Image: null
     };
   }
+
+  handleChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  };
+
+  handleImageChange = event => {
+    this.setState({
+      Image: event.target.files[0]
+    });
+  };
+
+  handleSubmit = event => {
+    event.preventDefault();
+    console.log("here", event);
+    const body = new FormData();
+    const { Name, Email, Bio, Image } = this.state;
+    body.append("Name", Name);
+    body.append("Email", Email);
+    body.append("Bio", Bio);
+    body.append("event", "Profile_Images");
+    body.append("Image", Image);
+    body.append("Tokens", this.props.user.user.Tokens);
+    body.append("Persons_id", this.props.user.user.Persons_id);
+    console.log(Image);
+    fetch("http://localhost:3030/Persons/update", {
+      method: "put",
+
+      body
+    })
+      .then(response => response.json())
+      .then(data => {
+        const { success, message } = data;
+        console.log(success,message);
+        if (success) {
+          alert("Profile has been updated")
+        } else {
+          this.setState({
+            error: message
+          });
+        }
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({
+          error: err
+        });
+      });
+  };
 
   toggle = () => {
     this.setState({
@@ -29,11 +80,9 @@ class Profile extends Component {
     });
   };
 
-  componentDidMount() {
-    console.log(this.props.user.user);
-  }
-
   render() {
+    const { Name, Email, Bio, Image } = this.state;
+
     return (
       <div className="body1">
         <div>
@@ -107,13 +156,11 @@ class Profile extends Component {
                     <h6>
                       <b>Choose an Image</b>
                     </h6>
-                    <form
-                      action="/profile"
-                      method="post"
-                      enctype="multipart/form-data"
-                    >
-                      <input type="file" name="avatar" />
-                    </form>
+                    <input
+                      type="file"
+                      name="Image"
+                      onChange={this.handleImageChange}
+                    />
                     <br />
                     <h6>
                       <b>Edit your personal information</b>
@@ -122,16 +169,25 @@ class Profile extends Component {
                     <div className="input-profile">
                       <input
                         type="text"
-                        name="Name"
-                        // value={Email}
+                        name={"Name"}
+                        value={Name}
                         placeholder="Name"
-                        // onChange={this.handleChange}
+                        onChange={this.handleChange}
+                      />
+                      <input
+                        type="text"
+                        name={"Email"}
+                        value={Email}
+                        placeholder="Email"
+                        onChange={this.handleChange}
                       />
                       <input
                         className="bio-profile"
                         type="text"
-                        name="About Me"
+                        name={"Bio"}
+                        value={Bio}
                         placeholder="Type your Biography here...."
+                        onChange={this.handleChange}
                       />
                     </div>
                   </MDBModalBody>
@@ -139,7 +195,9 @@ class Profile extends Component {
                     <MDBBtn color="secondary" onClick={this.toggle}>
                       Close
                     </MDBBtn>
-                    <MDBBtn color="primary">Save changes</MDBBtn>
+                    <MDBBtn color="primary" onClick={e => this.handleSubmit(e)}>
+                      Save changes
+                    </MDBBtn>
                   </MDBModalFooter>
                 </MDBModal>
               </MDBContainer>
