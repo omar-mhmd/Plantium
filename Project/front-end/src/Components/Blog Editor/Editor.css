@@ -1,0 +1,11 @@
+.Title-input{
+    width:100%;
+    margin: 0;
+}
+
+.blog-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+   padding: 5px;
+}

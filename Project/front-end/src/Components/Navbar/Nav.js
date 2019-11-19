@@ -128,7 +128,7 @@ class Nav extends React.Component {
 
         <main>
           <MDBContainer className="text-center my-5">
-            <SocialPage />
+            <SocialPage {...this.props} />
           </MDBContainer>
         </main>
       </div>

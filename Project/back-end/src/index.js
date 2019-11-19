@@ -4,6 +4,7 @@ import sqlite from "sqlite";
 import path from "path";
 import fs from "fs";
 import SQL from "sql-template-strings";
+import cors from "cors";
 const multer = require("multer");
 
 import {
@@ -61,7 +62,7 @@ const start = async () => {
     try {
       // console.log(req.body);
       const { Username, Email, Password, event } = req.body;
-      const Image = req.file && rupload.array('uploadedImages', 10)
+      const Image = req.file && rupload.array("uploadedImages", 10);
       console.log(Username, Email, Password, event, Image);
       if (!Username || !Password || !Email || !Image) {
         throw new Error("you must provide your data");
@@ -197,7 +198,7 @@ const start = async () => {
   });
 
   app.get("/Posts/read", async (req, res) => {
-    const sql = "SELECT * FROM Posts";
+    const sql = "SELECT * FROM Posts ORDER BY Date ASC";
     console.log(sql);
     try {
       const Posts = await db.all(sql);
@@ -233,13 +234,41 @@ const start = async () => {
     }
   });
 
+  app.post("/Posts/add", upload.none(), async (req, res) => {
+    try {
+      const { Posts_id } = req.body;
+      const { Type } = req.body;
+      const { Title } = req.body;
+      const { date } = req.body.date;
+      const { Text } = req.body;
+      const { Persons_Persons_id } = req.body;
+      console.log(req.body);
+      if (!Title || !Text) {
+        throw new Error("you must provide your data");
+      }
+      const result = await db.run(
+        `INSERT INTO Posts (Posts_id,Type, Title, date, Text, Persons_Persons_id) Values ('${Posts_id}','${Type}', '${Title}', ${date},'${Text}',${Persons_Persons_id})`
+      );
+      const r = result.stmt.lastID;
+      res.status(200).json({
+        success: true,
+        id: r
+      });
+    } catch (e) {
+      console.log(e);
+      res.status(500).json({
+        success: false,
+        message: e.message
+      });
+    }
+  });
+
   app.put("/Posts/update/:id", async (req, res) => {
     const { id } = req.params;
     const sql = `UPDATE Posts SET Type=?,Title = ?,Date=?, Embedded_Link=?,Text=? WHERE Posts_id=${id}`;
     const { Type } = req.body;
     const { Title } = req.body;
-    const { Date } = req.body;
-    const { Embedded_Link } = req.body;
+    const { date } = req.body;
     const { Text } = req.body;
 
     try {
@@ -247,7 +276,6 @@ const start = async () => {
         Type,
         Title,
         Date.now(),
-        Embedded_Link,
         Text
       ]);
       res.json({
@@ -360,12 +388,12 @@ const start = async () => {
     }
   });
 
-    app.post("/Posts_Images", withAuth,upload.single("Image_names"), async (req, res) => {
+  app.post("/Posts_Images", upload.single("Image_names"), async (req, res) => {
     console.log("try");
     try {
-      // console.log(req.body);
+      console.log(req.body);
       const Image_names = req.file && req.file.filename;
-      console.log(Image_names)
+      console.log(Image_names);
       const result = await db.run(
         `INSERT INTO Posts_Images (Image_names) Values ('${Image_names}')`
       );

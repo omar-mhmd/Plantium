@@ -2,16 +2,21 @@ import React, { Component } from "react";
 import "./Social.css";
 import Popup from "reactjs-popup";
 
-
 import Editor from "../Blog Editor/Editor.js";
 
 class SocialPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      Image: null
+      Image: null,
     };
   }
+
+  handleChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  };
 
   handleImageChange = event => {
     this.setState({
@@ -25,7 +30,7 @@ class SocialPage extends Component {
     const { Image } = this.state;
     body.append("Image_names", Image);
     // body.append("Tokens", this.props.user.user.Tokens);
-    body.append("Persons_id", this.props.user.user.Persons_id);
+    // body.append("Persons_id", this.props.user.user.Persons_id);
     console.log(Image);
     fetch("http://localhost:3030/Posts_Images", {
       method: "post",
@@ -37,7 +42,7 @@ class SocialPage extends Component {
         const { success, message } = data;
         console.log(message);
         if (success) {
-          alert("You have successfully uploaded an Image")
+          alert("You have successfully uploaded an Image");
         } else {
           this.setState({
             error: message
@@ -52,9 +57,14 @@ class SocialPage extends Component {
       });
   };
 
+  componentDidMount(){
+
+  }
+
   render() {
-    const {Image}=this.state;
+    const { Image } = this.state;
     return (
+
       <div>
         {/* Page Container */}
         <div
@@ -79,7 +89,7 @@ class SocialPage extends Component {
                     position="right center"
                   >
                     <div>
-                      <Editor />
+                      <Editor {...this.props} />
                     </div>
                   </Popup>
 
@@ -100,6 +110,7 @@ class SocialPage extends Component {
                       <input
                         type="file"
                         name="Image"
+                        
                         onChange={this.handleImageChange}
                       />
                       <br />
@@ -109,21 +120,7 @@ class SocialPage extends Component {
                     </div>
                   </Popup>
 
-                  <Popup
-                    trigger={
-                      <button
-                        onclick="myFunction('Demo3')"
-                        className="w3-button w3-block w3-theme-l1 w3-left-align"
-                      >
-                        <i class="fas fa-paperclip fa-fw w3-margin-right"></i>
-                        Post a Link
-                      </button>
-                    }
-                    modal
-                    position="right center"
-                  >
-                    <div></div>
-                  </Popup>
+             
 
                   <div id="Demo3" className="w3-hide w3-container">
                     <div className="w3-row-padding">
