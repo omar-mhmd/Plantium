@@ -117,11 +117,11 @@ class Nav extends React.Component {
           <MDBView src={require("../../Assets/front1.jpg")}>
             <MDBMask
               overlay="green-light"
-              className="flex-center flex-column text-white text-center"
+              // className="flex-center flex-column text-white text-center"
             >
-              <h1>Plantium</h1>
+              <h1 className="Words">Plantium</h1>
               <br />
-              <h2>Plant Freedom</h2>
+              <mark className="Words-2">Plant Freedom</mark>
             </MDBMask>
           </MDBView>
         </header>

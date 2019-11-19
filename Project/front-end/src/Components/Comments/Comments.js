@@ -28,13 +28,13 @@ class BlogComponentsPage extends React.Component {
     };
   }
 
-  componentDidMount() {
-    fetch("http://localhost:3030/Persons/read")
-      .then(response => response.json())
-      .then(Persons => {
-        this.setState({ Persons: Persons.results });
-      });
-  }
+  // componentDidMount() {
+  //   fetch("http://localhost:3030/Persons/read")
+  //     .then(response => response.json())
+  //     .then(Persons => {
+  //       this.setState({ Persons: Persons.results });
+  //     });
+  // }
 
   /**
    * Renders the component.
@@ -48,133 +48,48 @@ class BlogComponentsPage extends React.Component {
         <MDBCardHeader className="border-0 font-weight-bold">
           <p className="mr-4 mb-0">4 comments</p>
         </MDBCardHeader>
-        {this.state.Persons.map(I => (
-          <MDBMedia className="d-block d-md-flex mt-4">
-            <img
-              className="card-img-64 d-flex mx-auto mb-3"
-              src={`http://localhost:3030/Profile_Images/${I.Image}`}
-              alt=""
-            />
-            <MDBMedia body className="text-center text-md-left ml-md-3 ml-0">
-              <h5 className="font-weight-bold mt-0">
-                {I.Name}
-                <MDBIcon icon="reply" className="pull-right ml-2" />
-              </h5>
-              Duis aute irure dolor in reprehenderit in voluptate velit esse
-              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-              cupidatat non proident, sunt in culpa qui officia deserunt mollit
-              anim id est laborum.
-              <MDBMedia className="d-block d-md-flex mt-4">
-                <img
-                  className="card-img-64 d-flex mx-auto mb-3"
-                  src="https://mdbootstrap.com/img/Photos/Avatars/img (27).jpg"
-                  alt=""
-                />
-                <MDBMedia
-                  body
-                  className="text-center text-md-left ml-md-3 ml-0"
-                >
-                  <h5 className="font-weight-bold mt-0">
-                    Tommy Smith
-                    <MDBIcon icon="reply" className="pull-right ml-2" />
-                  </h5>
-                  Duis aute irure dolor in reprehenderit in voluptate velit esse
-                  cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                  occaecat cupidatat non proident, sunt in culpa qui officia
-                  deserunt mollit anim id est laborum.
-                  <div className="form-group mt-4">
-                    <label htmlFor="quickReplyFormComment">Your comment</label>
-                    <textarea
-                      className="form-control"
-                      id="quickReplyFormComment"
-                      rows="5"
-                    ></textarea>
-                    <div className="text-center my-4">
-                      <MDBBtn size="sm" color="primary">
-                        Post
-                      </MDBBtn>
-                    </div>
-                  </div>
-                  <MDBMedia className="d-block d-md-flex mt-4">
-                    <img
-                      className="card-img-64 d-flex mx-auto mb-3"
-                      src="https://mdbootstrap.com/img/Photos/Avatars/img (21).jpg"
-                      alt=""
-                    />
-                    <MDBMedia
-                      body
-                      className="text-center text-md-left ml-md-3 ml-0"
-                    >
-                      <h5 className="font-weight-bold mt-0">
-                        Sylvester the Cat
-                        <MDBIcon icon="reply" className="pull-right ml-2" />
-                      </h5>
-                      Duis aute irure dolor in reprehenderit in voluptate velit
-                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                      sint occaecat cupidatat non proident, sunt in culpa qui
-                      officia deserunt mollit anim id est laborum.
-                    </MDBMedia>
-                  </MDBMedia>
-                </MDBMedia>
-              </MDBMedia>
-            </MDBMedia>
-          </MDBMedia>
-        ))}
 
         <MDBMedia className="d-block d-md-flex mt-4">
           <img
             className="card-img-64 d-flex mx-auto mb-3"
-            src="https://mdbootstrap.com/img/Photos/Avatars/img (30).jpg"
+            src={`http://localhost:3030/Profile_Images/${this.props.user.user.Image}`}
             alt=""
           />
           <MDBMedia body className="text-center text-md-left ml-md-3 ml-0">
             <h5 className="font-weight-bold mt-0">
-              Caroline Horwitz
+              {this.props.user.user.Name}
               <MDBIcon icon="reply" className="pull-right ml-2" />
             </h5>
-            Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-            cupidatat non proident, sunt in culpa qui officia deserunt mollit
-            anim id est laborum.
+            OMG I LOVE THIS !! I'm definetly trying out these awesome tips.
+            <MDBMedia className="d-block d-md-flex mt-4">
+              <img
+                className="card-img-64 d-flex mx-auto mb-3"
+                src={require("../../Assets/profile2.jpg")}
+                alt=""
+              />
+              <MDBMedia body className="text-center text-md-left ml-md-3 ml-0">
+                <h5 className="font-weight-bold mt-0">
+                  Ella Smith
+                  <MDBIcon icon="reply" className="pull-right ml-2" />
+                </h5>
+               AHHHHH I know right ? They're just too good for us...what is this blessing we don't deserve this
+                <div className="form-group mt-4">
+                  <label htmlFor="quickReplyFormComment">Your comment</label>
+                  <textarea
+                    className="form-control"
+                    id="quickReplyFormComment"
+                    rows="5"
+                  ></textarea>
+                  <div className="text-center my-4">
+                    <MDBBtn size="sm" color="primary">
+                      Post
+                    </MDBBtn>
+                  </div>
+                </div>
+              </MDBMedia>
+            </MDBMedia>
           </MDBMedia>
         </MDBMedia>
-
-        <MDBPagination className="d-flex justify-content-center mt-5">
-          <MDBPageItem disabled>
-            <MDBPageNav>
-              <span>First</span>
-            </MDBPageNav>
-          </MDBPageItem>
-          <MDBPageItem disabled>
-            <MDBPageNav aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-              <span className="sr-only">Previous</span>
-            </MDBPageNav>
-          </MDBPageItem>
-          <MDBPageItem active>
-            <MDBPageNav>
-              1 <span className="sr-only">(current)</span>
-            </MDBPageNav>
-          </MDBPageItem>
-          <MDBPageItem>
-            <MDBPageNav>2</MDBPageNav>
-          </MDBPageItem>
-          <MDBPageItem>
-            <MDBPageNav>3</MDBPageNav>
-          </MDBPageItem>
-          <MDBPageItem>
-            <MDBPageNav>4</MDBPageNav>
-          </MDBPageItem>
-          <MDBPageItem>
-            <MDBPageNav>5</MDBPageNav>
-          </MDBPageItem>
-          <MDBPageItem>
-            <MDBPageNav>&raquo;</MDBPageNav>
-          </MDBPageItem>
-          <MDBPageItem>
-            <MDBPageNav>Last</MDBPageNav>
-          </MDBPageItem>
-        </MDBPagination>
       </MDBContainer>
     );
   }

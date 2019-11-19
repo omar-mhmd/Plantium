@@ -2,3 +2,26 @@
 @import url("https://www.w3schools.com/lib/w3-theme-green.css");
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 
+
+.w3-button {
+    background-color: rgb(4, 218, 4);
+    background-image: url(../../Assets/wood.png);
+}
+
+div .Body4 .w3-card{
+    background-color: rgb(4, 218, 4);
+    background-image: url(../../Assets/wood.png);
+}
+
+.w3-right{
+    color: white;
+    font-weight: 900;
+}
+
+div .w3-card h4{
+    color: white;
+}
+
+.text-content{
+    color: white;
+}

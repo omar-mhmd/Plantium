@@ -57,15 +57,12 @@ class SocialPage extends Component {
       });
   };
 
-  componentDidMount(){
-
-  }
+  
 
   render() {
     const { Image } = this.state;
     return (
-
-      <div>
+      <div className="Body4">
         {/* Page Container */}
         <div
           className="w3-container w3-content"
@@ -77,7 +74,7 @@ class SocialPage extends Component {
             <div className="w3-col m3">
               {/* Accordion */}
               <div className="w3-card w3-round">
-                <div className="w3-white">
+                <div>
                   <Popup
                     trigger={
                       <button className="w3-button w3-block w3-theme-l1 w3-left-align">
@@ -110,7 +107,6 @@ class SocialPage extends Component {
                       <input
                         type="file"
                         name="Image"
-                        
                         onChange={this.handleImageChange}
                       />
                       <br />
@@ -119,8 +115,6 @@ class SocialPage extends Component {
                       </button>
                     </div>
                   </Popup>
-
-             
 
                   <div id="Demo3" className="w3-hide w3-container">
                     <div className="w3-row-padding">
@@ -184,31 +178,32 @@ class SocialPage extends Component {
             <div className="w3-col m7">
               <div className="w3-row-padding">
                 <div className="w3-col m12">
-                  <div className="w3-card w3-round w3-white"></div>
+                  <div className="w3-card w3-round "></div>
                 </div>
               </div>
-              <div className="w3-container w3-card w3-white w3-round w3-margin">
+              <div className="w3-container w3-card w3-round w3-margin">
                 <br />
                 <img
-                  src="/w3images/avatar2.png"
+                  src={`http://localhost:3030/Profile_Images/${this.props.user.user.Image}`}
                   alt="Avatar"
                   className="w3-left w3-circle w3-margin-right"
                   style={{ width: 60 }}
                 />
-                <span className="w3-right w3-opacity">1 min</span>
-                <h4>John Doe</h4>
+                <p className="w3-right w3-opacity">1 min</p>
+                <h4>{this.props.user.user.Name}</h4>
                 <br />
                 <hr className="w3-clear" />
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat.
+                <p className="text-content">
+                  Omg ! I'm in love with my new photography skills. I took these
+                  images not long ago and they seem very aesthetically pleasing.
+                  I'm quite pleased of what I've achieved and what my lenses has
+                  caught. It's truly a sight worth mentioning. Do you think this
+                  is paradise on Earth ?
                 </p>
                 <div className="w3-row-padding" style={{ margin: "0 -16px" }}>
                   <div className="w3-half">
                     <img
-                      src="/w3images/lights.jpg"
+                      src={require("../../Assets/background4.jpg")}
                       style={{ width: "100%" }}
                       alt="Northern Lights"
                       className="w3-margin-bottom"
@@ -216,7 +211,7 @@ class SocialPage extends Component {
                   </div>
                   <div className="w3-half">
                     <img
-                      src="/w3images/nature.jpg"
+                      src={require("../../Assets/plant 2.jpg")}
                       style={{ width: "100%" }}
                       alt="Nature"
                       className="w3-margin-bottom"
@@ -236,41 +231,11 @@ class SocialPage extends Component {
                   <i className="fa fa-comment" /> Comment
                 </button>
               </div>
-              <div className="w3-container w3-card w3-white w3-round w3-margin">
+
+              <div className="w3-container w3-card  w3-round w3-margin">
                 <br />
                 <img
-                  src="/w3images/avatar5.png"
-                  alt="Avatar"
-                  className="w3-left w3-circle w3-margin-right"
-                  style={{ width: 60 }}
-                />
-                <span className="w3-right w3-opacity">16 min</span>
-                <h4>Jane Doe</h4>
-                <br />
-                <hr className="w3-clear" />
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat.
-                </p>
-                <button
-                  type="button"
-                  className="w3-button w3-theme-d1 w3-margin-bottom"
-                >
-                  <i className="fa fa-thumbs-up" /> Like
-                </button>
-                <button
-                  type="button"
-                  className="w3-button w3-theme-d2 w3-margin-bottom"
-                >
-                  <i className="fa fa-comment" /> Comment
-                </button>
-              </div>
-              <div className="w3-container w3-card w3-white w3-round w3-margin">
-                <br />
-                <img
-                  src="/w3images/avatar6.png"
+                  src={require("../../Assets/person.png")}
                   alt="Avatar"
                   className="w3-left w3-circle w3-margin-right"
                   style={{ width: 60 }}
@@ -279,18 +244,13 @@ class SocialPage extends Component {
                 <h4>Angie Jane</h4>
                 <br />
                 <hr className="w3-clear" />
-                <p>Have you seen this?</p>
+                <p className="text-content">Have you seen this?</p>
                 <img
-                  src="/w3images/nature.jpg"
+                  src={require("../../Assets/plant.jpg")}
                   style={{ width: "100%" }}
                   className="w3-margin-bottom"
                 />
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat.
-                </p>
+               
                 <button
                   type="button"
                   className="w3-button w3-theme-d1 w3-margin-bottom"

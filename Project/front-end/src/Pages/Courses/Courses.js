@@ -33,15 +33,7 @@ class Course extends Component {
 
         <div className="Second-Overlay">
           <div className="blogs">
-            <BlogCards />
-            <BlogCards />
-            <BlogCards />
-            <BlogCards />
-            <BlogCards />
-            <BlogCards />
-            <BlogCards />
-            <BlogCards />
-            <BlogCards />
+          <BlogCards {...this.props}/>
           </div>
         </div>
       </div>

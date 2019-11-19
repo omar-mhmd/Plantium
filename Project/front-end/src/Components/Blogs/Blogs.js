@@ -1,6 +1,7 @@
 import React from "react";
 import "./Blogs.css";
 import BlogComponentsPage from "../Comments/Comments.js";
+import Popup from "reactjs-popup";
 
 import {
   MDBBtn,
@@ -19,6 +20,7 @@ import {
   MDBIcon,
   MDBMedia
 } from "mdbreact";
+import Articles from "../Articles/Articles";
 
 /**
  * @module BlogCards
@@ -33,7 +35,7 @@ class BlogCards extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modal9: false,
+      modal4: false
     };
   }
 
@@ -48,6 +50,9 @@ class BlogCards extends React.Component {
     });
   };
 
+ 
+
+
   /**
    * Renders the component.
    * @function
@@ -55,105 +60,101 @@ class BlogCards extends React.Component {
    *
    */
 
+   
   render() {
     return (
-      <MDBCol>
-        <MDBCard style={{ width: "22rem" }}>
-          <MDBCardImage
-            className="img-fluid"
-            src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg"
-            waves
-          />
-          <MDBCardBody>
-            <MDBCardTitle>Card title</MDBCardTitle>
-            <MDBCardText>
-              Some quick example text to build on the card title and make up the
-              bulk of the card&apos;s content.
-            </MDBCardText>
-            <MDBBtn onClick={this.toggle(14)}>Read More</MDBBtn>
+      <div>
+        <div className="blog-card">
+          <div className="meta">
+            <div className="photo" />
+            <ul className="details">
+              <li className="author">
+                <a href="#">Plantium</a>
+              </li>
+              <li className="date">Aug. 24, 2015</li>
+              <li className="tags">
+                <ul>
+                  <li>
+                    <a href="#">Learn</a>
+                  </li>
+                  <li>
+                    <a href="#">Planting</a>
+                  </li>
+                  <li>
+                    <a href="#">Seeds</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div className="description">
+            <h1>Learning to Plant Seeds</h1>
+            <h2>Opening a door to the future</h2>
+            <p>
+              {" "}
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum
+              dolorum architecto obcaecati enim dicta praesentium, quam nobis!
+              Neque ad aliquam facilis numquam. Veritatis, sit.
+            </p>
+            <button className="read-more" onClick={this.toggle(4)}>
+              Read More
+            </button>
             <MDBModal
-              className="Modal2"
-              isOpen={this.state.modal14}
-              toggle={this.toggle(14)}
-              centered
+              isOpen={this.state.modal4}
+              toggle={this.toggle(4)}
+              size="fluid"
             >
-              <MDBModalHeader toggle={this.toggle(14)}>
-                MDBModal title
+              <MDBModalHeader toggle={this.toggle(4)}>
+                Learning to Plant Seeds
               </MDBModalHeader>
-              <MDBModalBody className="Modal-body">
-                <MDBContainer>
-                  <MDBCardHeader className="border-0 font-weight-bold d-flex justify-content-between">
-                    <p className="mr-4 mb-0">About the author</p>
-                    <ul className="list-unstyled list-inline mb-0">
-                      <li className="list-inline-item mr-3">
-                        {" "}
-                        {/*Add Profile link to user here*/}
-                        <MDBIcon className="mr-2" icon="user" />
-                        See profile
-                      </li>
-                    </ul>
-                  </MDBCardHeader>
-                  <MDBMedia className="p-4 bg-white">
-                    <MDBMedia>
-                      <img
-                        className="card-img-100 d-flex z-depth-1 mr-3"
-                        src="https://mdbootstrap.com/img/Photos/Avatars/img%20(8).jpg"
-                        alt=""
-                      />
-                    </MDBMedia>
-                    <MDBMedia body>
-                      <h5 className="font-weight-bold mt-0">Danny Newman</h5>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                      Quod consectetur accusamus velit nostrum et magnam.
-                    </MDBMedia>
-                  </MDBMedia>
-                </MDBContainer>
-                <br />
-                <hr></hr>
-                <MDBModalBody>
-                  <h1>Hello</h1>
-                  <h1>Hello</h1>
-                  <h1>Hello</h1>
-                  <h1>Hello</h1>
-                  <h1>Hello</h1>
-                  <h1>Hello</h1>
-                  <h1>Hello</h1>
-                  <h1>Hello</h1>
-                  <h1>Hello</h1>
-                  <h1>Hello</h1>
-                  <h1>Hello</h1>
-                  <h1>Hello</h1>
-                  <h1>Hello</h1>
-                  <h1>Hello</h1>
-                  <h1>Hello</h1>
-                  <h1>Hello</h1>
-                  <h1>Hello</h1>
-                  <h1>Hello</h1>
-                  <h1>Hello</h1>
-                  <h1>Hello</h1>
-                  <h1>Hello</h1>
-                  <h1>Hello</h1>
-                  <h1>Hello</h1>
-                  <h1>Hello</h1>
-                  <h1>Hello</h1>
-                  <h1>Hello</h1>
-                  <h1>Hello</h1>
-                  <h1>Hello</h1>
-                  <h1>Hello</h1>
-                  <br />
-                  <hr></hr>
-                </MDBModalBody>
-                <BlogComponentsPage />
+              <MDBModalBody >
+                <Articles />
+                <BlogComponentsPage {...this.props}/>
               </MDBModalBody>
-              <MDBModalFooter>
-                <MDBBtn color="secondary" onClick={this.toggle(14)}>
-                  Close
-                </MDBBtn>
-              </MDBModalFooter>
             </MDBModal>
-          </MDBCardBody>
-        </MDBCard>
-      </MDBCol>
+          </div>
+        </div>
+        <div className="blog-card alt">
+          <div className="meta">
+            <div
+              className="photo"
+              style={{
+                backgroundImage:
+                  "url(https://storage.googleapis.com/chydlx/codepen/blog-cards/image-2.jpg)"
+              }}
+            />
+            <ul className="details">
+              <li className="author">
+                <a href="#">Jane Doe</a>
+              </li>
+              <li className="date">July. 15, 2015</li>
+              <li className="tags">
+                <ul>
+                  <li>
+                    <a href="#">Learn</a>
+                  </li>
+                  <li>
+                    <a href="#">Code</a>
+                  </li>
+                  <li>
+                    <a href="#">JavaScript</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div className="description">
+            <h1>Mastering the Language</h1>
+            <h2>Java is not the same as JavaScript</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum
+              dolorum architecto obcaecati enim dicta praesentium, quam nobis!
+              Neque ad aliquam facilis numquam. Veritatis, sit.
+            </p>
+            <button className="read-more">Read More</button>
+          </div>
+        </div>
+      </div>
     );
   }
 }
