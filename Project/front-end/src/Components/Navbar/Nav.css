@@ -7,6 +7,10 @@
     height: 100%;
 }
 
+html{
+     background-color: #def3d5;
+}
+
 .btn-light-green{
     font-size: 500px;
 }

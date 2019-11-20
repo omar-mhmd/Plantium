@@ -107,9 +107,9 @@ class BlogCards extends React.Component {
               <MDBModalHeader toggle={this.toggle(4)}>
                 Learning to Plant Seeds
               </MDBModalHeader>
-              <MDBModalBody >
+              <MDBModalBody>
                 <Articles />
-                <BlogComponentsPage {...this.props}/>
+                <BlogComponentsPage {...this.props} />
               </MDBModalBody>
             </MDBModal>
           </div>
@@ -120,7 +120,7 @@ class BlogCards extends React.Component {
               className="photo"
               style={{
                 backgroundImage:
-                  "url(https://storage.googleapis.com/chydlx/codepen/blog-cards/image-2.jpg)"
+                  "url(https://i.pinimg.com/564x/8e/34/f7/8e34f724c03da625a1e07b89dbf04e26.jpg)"
               }}
             />
             <ul className="details">
@@ -131,21 +131,21 @@ class BlogCards extends React.Component {
               <li className="tags">
                 <ul>
                   <li>
-                    <a href="#">Learn</a>
+                    <a href="#">Tools</a>
                   </li>
                   <li>
-                    <a href="#">Code</a>
+                    <a href="#">Techniques</a>
                   </li>
                   <li>
-                    <a href="#">JavaScript</a>
+                    <a href="#">Tips</a>
                   </li>
                 </ul>
               </li>
             </ul>
           </div>
           <div className="description">
-            <h1>Mastering the Language</h1>
-            <h2>Java is not the same as JavaScript</h2>
+            <h1>Planting Tools </h1>
+            <h2>Get Your Hand Dirty</h2>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum
               dolorum architecto obcaecati enim dicta praesentium, quam nobis!
