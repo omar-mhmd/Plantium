@@ -49,7 +49,7 @@ class Nav extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="body5">
         <header>
           <MDBNavbar
             color="green"
@@ -65,7 +65,7 @@ class Nav extends React.Component {
             )}
             <MDBCollapse isOpen={this.state.collapse} navbar>
               <MDBNavbarNav left>
-                <MDBNavItem active>
+                <MDBNavItem>
                   <MDBNavLink to="/Homepage">Home</MDBNavLink>
                 </MDBNavItem>
                 <MDBNavItem>

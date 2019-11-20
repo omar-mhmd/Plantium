@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./Cards.css";
 
-class EventCards extends Component {
+class Cards2 extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -28,7 +28,7 @@ class EventCards extends Component {
             <div className="content">
               <div className="front">
                 <div className="inner">
-                  <h2 className="inner-text">Plantation in Beirut</h2>
+                  <h2 className="inner-text">Plantation in Tripoli</h2>
 
                   <label
                     className="button"
@@ -42,14 +42,14 @@ class EventCards extends Component {
               <div className="back">
                 <div className="inner">
                   <div className="info">
-                    <span>15</span>
+                    <span>35</span>
                     <div className="icon">
                       <i className="fas fa-users" />
                       <span>people going</span>
                     </div>
                   </div>
                   <div className="info">
-                    <span>44</span>
+                    <span>64</span>
                     <div className="icon">
                       <i class="fas fa-seedling"></i>
                       <span>seeds</span>
@@ -58,15 +58,14 @@ class EventCards extends Component {
 
                   <div className="description">
                     <p>
-                     YES YES YES WE'RE ARRIVING TO Beirut !
+                      Hey there ! We'll be planting plants Tripoli !
                     </p>
                     <p>
-                     Please make sure you have gloves, do not worry about the tools.
-                     Tools will be provided by us for free of charge as well as some professional techniques
-                     from some of our guests. Looking forward to see you there !!
+                      You are required, to bring gloves but above all to bring your camera !
+                      We'll be taking lots of images so look forward to it !!
                     </p>
                   </div>
-                  <div className="location">Sanayeh Garden</div>
+                  <div className="location">Rue 200</div>
 
                   <label
                     htmlFor="card1"
@@ -86,4 +85,4 @@ class EventCards extends Component {
   }
 }
 
-export default EventCards;
+export default Cards2;

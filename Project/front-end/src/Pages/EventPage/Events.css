@@ -1,9 +1,27 @@
-.card-design{
+@import url("https://fonts.googleapis.com/css?family=Satisfy&display=swap");
+
+.card-design {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+position: relative;
+top:-160px;
 }
 
-/* .body3{
+.body3 {
+  background-image: url(../../Assets/rename.jpg);
+  background-size: cover;
+  height: 100%;
+}
 
-} */
+.upcoming {
+  padding-top: 190px;
+  padding-left:150px;
+  font-size: 40px;
+  font-family: "Satisfy", cursive;
+  color: rgb(0, 200, 0);
+   border-bottom: 2px solid rgb(110, 251, 16);
+   border-bottom-width: thin;
+   width:4000px;
+}
+

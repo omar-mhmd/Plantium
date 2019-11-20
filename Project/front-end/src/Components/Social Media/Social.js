@@ -3,12 +3,13 @@ import "./Social.css";
 import Popup from "reactjs-popup";
 
 import Editor from "../Blog Editor/Editor.js";
+import EventCards from "../../Components/Cards/Cards.js"
 
 class SocialPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      Image: null,
+      Image: null
     };
   }
 
@@ -56,8 +57,6 @@ class SocialPage extends Component {
         });
       });
   };
-
-  
 
   render() {
     const { Image } = this.state;
@@ -170,10 +169,10 @@ class SocialPage extends Component {
               {/* Interests */}
               <div className="w3-card w3-round w3-white w3-hide-small"></div>
               <br />
-              {/* Alert Box */}
 
               {/* End Left Column */}
             </div>
+
             {/* Middle Column */}
             <div className="w3-col m7">
               <div className="w3-row-padding">
@@ -250,7 +249,7 @@ class SocialPage extends Component {
                   style={{ width: "100%" }}
                   className="w3-margin-bottom"
                 />
-               
+
                 <button
                   type="button"
                   className="w3-button w3-theme-d1 w3-margin-bottom"
@@ -267,14 +266,8 @@ class SocialPage extends Component {
               {/* End Middle Column */}
             </div>
             {/* Right Column */}
-            <div className="w3-col m2">
-              <div className="w3-card w3-round w3-white w3-center">
-                <div className="w3-container"></div>
-              </div>
-              <br />
+      
 
-              {/* End Right Column */}
-            </div>
             {/* End Grid */}
           </div>
           {/* End Page Container */}

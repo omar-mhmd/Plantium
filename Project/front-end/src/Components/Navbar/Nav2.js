@@ -17,7 +17,7 @@ import {
   MDBBtn
 } from "mdbreact";
 import { Link } from "react-router-dom";
- import "./Nav.css";
+import "./Nav.css";
 
 class Nav2 extends React.Component {
   constructor(props) {
@@ -63,7 +63,7 @@ class Nav2 extends React.Component {
             )}
             <MDBCollapse isOpen={this.state.collapse} navbar>
               <MDBNavbarNav left>
-                <MDBNavItem active>
+                <MDBNavItem>
                   <MDBNavLink to="/Homepage">Home</MDBNavLink>
                 </MDBNavItem>
                 <MDBNavItem>
